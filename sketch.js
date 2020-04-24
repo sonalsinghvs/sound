@@ -1,30 +1,33 @@
-let level;
-let mySound;
-let lineX = 250
-let lineY = 250
+var amplitude;
+var bird;
+var circleX = 500
+var circleY = 500
+
 function preload() {
-  mySound = loadSound('bird.wav');
+  bird = loadSound('bird.wav');
 }
 
 function setup() {
   let cnv = createCanvas(800, 800);
   cnv.mousePressed(canvasPressed);
   background(220);
-  text('tap here to play', 10, 20);
   amplitude = new p5.Amplitude();
 }
 
 function canvasPressed() {
-  // playing a sound file on a user gesture
-  // is equivalent to `userStartAudio()`
-  mySound.play();
+  bird.play();
 }
 
 function draw() {
   background(220);
-  text('tap to play', 20, 20);
+  text('Tap to play bird', 50, 50);
 
   let level = amplitude.getLevel();
-  let size = map(level, 0, 1, 0, 200);
-  ellipse(width, height, size, size);
+  stroke('white');
+  strokeWeight(2);
+  textSize(20);
+  fill('orange');
+  circleX = level * 5000
+  circleY = level * 2500 
+  ellipse(200, 200, circleX, circleY);
 }
